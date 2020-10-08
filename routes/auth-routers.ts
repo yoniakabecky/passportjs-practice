@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import passport from "passport";
 
 export const router = express.Router();
 
@@ -14,7 +15,14 @@ router.get("/logout", (req: Request, res: Response) => {
 });
 
 // auth with google
-router.get("/google", (req: Request, res: Response) => {
-  // handle with passport
-  res.send("logging in with Google");
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: ["profile"],
+  })
+);
+
+// callback route for google to redirect to
+router.get("/google/redirect", (req, res) => {
+  res.send("you reached the call back URI");
 });

@@ -2,6 +2,8 @@ import express from "express";
 
 import { router } from "./routes/auth-routers";
 
+const passportSetup = require("./config/passport-setup");
+
 const app = express();
 
 // set up view engine

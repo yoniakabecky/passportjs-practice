@@ -9,3 +9,5 @@ node_modules/
 
 # dotenv environment 
 .env
+
+/config/keys.ts
