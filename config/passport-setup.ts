@@ -1,9 +1,20 @@
 import passport from "passport";
 import passportGoogle from "passport-google-oauth";
 import { User } from "../models/user";
+import { User as UserType } from "../types/user";
 import keys from "./keys";
 
 const GoogleStrategy = passportGoogle.OAuth2Strategy;
+
+passport.serializeUser((user: UserType, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id: String, done) => {
+  User.findById(id).then((user) => {
+    done(null, user.id);
+  });
+});
 
 passport.use(
   new GoogleStrategy(
@@ -19,6 +30,7 @@ passport.use(
         if (currentUser) {
           // already have the user
           console.log("user is: ", currentUser);
+          done(null, currentUser);
         } else {
           // create user in our db
           new User({
@@ -28,6 +40,7 @@ passport.use(
             .save()
             .then((newUser) => {
               console.log("new user created: " + newUser);
+              done(null, newUser);
             });
         }
       });

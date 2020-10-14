@@ -1,5 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
+import cookieSession from "cookie-session";
+import passport from "passport";
 
 import keys from "./config/keys";
 import { router } from "./routes/auth-routers";
@@ -9,6 +11,17 @@ const app = express();
 
 // set up view engine
 app.set("view engine", "ejs");
+
+app.use(
+  cookieSession({
+    maxAge: 24 * 60 * 60 * 1000, // 1 day
+    keys: [keys.session.cookieKey],
+  })
+);
+
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // connect to mongodb
 mongoose.connect(keys.mongodb.dbURI, () => {
