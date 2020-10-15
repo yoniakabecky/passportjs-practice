@@ -27,6 +27,6 @@ router.get(
   "/google/redirect",
   passport.authenticate("google"),
   (req: Request, res: Response) => {
-    res.send("you reached the call back URI");
+    res.redirect("/profile/");
   }
 );

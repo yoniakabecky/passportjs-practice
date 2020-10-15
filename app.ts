@@ -4,7 +4,8 @@ import cookieSession from "cookie-session";
 import passport from "passport";
 
 import keys from "./config/keys";
-import { router } from "./routes/auth-routers";
+import { router as authRoutes } from "./routes/auth-routes";
+import { router as profileRoutes } from "./routes/profile-routes";
 
 const passportSetup = require("./config/passport-setup");
 const app = express();
@@ -29,7 +30,8 @@ mongoose.connect(keys.mongodb.dbURI, () => {
 });
 
 // set up routes
-app.use("/auth", router);
+app.use("/auth", authRoutes);
+app.use("/profile", profileRoutes);
 
 // create home route
 app.get("/", (req, res) => {

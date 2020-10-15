@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OAuth Tutorials</title>
+
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <nav class="bg-red-500 px-4 py-2">
+      <ul class="max-w-screen-lg mx-auto my-0 p-0">
+        <li class="inline-block m-0 my-2 list-none">
+          <a
+            href="/auth/logout"
+            class="bg-red-300 block p-2 text-white text-lg no-underline"
+          >
+            Logout
+          </a>
+        </li>
+        <li class="inline-block m-0 my-2 list-none">
+          <a
+            href="/auth/login"
+            class="bg-red-300 block p-2 text-white text-lg no-underline"
+          >
+            Login
+          </a>
+        </li>
+        <li class="inline-block m-0 my-2 list-none">
+          <a
+            href="/"
+            class="bg-red-300 block p-2 text-white text-lg no-underline"
+          >
+            Homepage
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <header class="max-w-screen-lg mx-auto my-5 px-2 py-0 text-gray-800">
+      <h1 class="text-6xl">Welcome to your profile <%= user.username %></h1>
+    </header>
+
+    <main class="max-w-screen-lg mx-auto my-5 px-2 py-0 text-gray-800"></main>
+  </body>
+</html>
