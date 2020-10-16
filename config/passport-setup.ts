@@ -25,21 +25,19 @@ passport.use(
       callbackURL: "/auth/google/redirect",
     },
     (accessToken, refreshToken, profile, done) => {
-      // check if user already exists in our db
       User.findOne({ googleId: profile.id }).then((currentUser) => {
         if (currentUser) {
           // already have the user
-          console.log("user is: ", currentUser);
           done(null, currentUser);
         } else {
           // create user in our db
           new User({
             username: profile.displayName,
             googleId: profile.id,
+            thumbnail: profile._json.picture,
           })
             .save()
             .then((newUser) => {
-              console.log("new user created: " + newUser);
               done(null, newUser);
             });
         }
