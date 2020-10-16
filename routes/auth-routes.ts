@@ -30,3 +30,14 @@ router.get(
     res.redirect("/profile/");
   }
 );
+
+// auth with facebook
+router.get("/facebook", passport.authenticate("facebook"));
+
+router.get(
+  "/facebook/redirect",
+  passport.authenticate("facebook", {
+    successRedirect: "/profile/",
+    failureRedirect: "/login",
+  })
+);
